@@ -1,0 +1,184 @@
+*{
+	font-size: 12px;
+}
+
+body{
+	background: #CCCCCC;
+	/*background: url("/sites/all/themes/bistro32/images/background_texture.png") repeat scroll 0 0 transparent;*/
+}
+
+#wrapper{
+	border-width: 0;
+	background: url("/sites/all/themes/bistro32/images/background_texture.png") repeat scroll 0 0 transparent;
+}
+
+#main{
+	background: url("/sites/all/themes/bistro32/images/background_texture.png") repeat scroll 0 0 transparent;
+}
+
+#header, #footer-area{
+	background: #BC252A;
+	color: #FFFFFF;
+}
+
+#header #navigation{
+	background: #AAAAAA;
+	margin: 0 auto;
+}
+
+#header #site-logo {
+	padding: 1em 0;
+}
+
+#header .sitename{
+	margin: 0.5em;
+	width: 50%;
+}
+
+#header .site-name{
+	text-transform: uppercase;
+	line-height: 1em;
+	color: #FFFFFF;
+	font-size: 5em;
+	font-weight: bold;
+}
+
+#header .logo{
+	margin: 0.5em;
+	width: 20%;
+}
+
+#header .devise{
+	margin: 0.5em;
+	width: 20%;
+}
+
+#header .site-devise{
+	text-transform: uppercase;
+	color: #FFFFFF;
+	line-height: 1em;
+	font-size: 3em;
+	font-weight: bold;
+}
+
+#header .site-slogan{
+	color: #FFFFFF;
+	font-size: 2em;
+}
+
+#header img{
+	border-radius: 3px;
+}
+
+#footer-area{
+	border-radius: 0 0 5px 5px;
+}
+
+#main-menu > ul.menu li {
+	text-transform: uppercase;
+	border-right: 1px solid #BC252A;
+}
+
+#main-menu > ul.menu a.active {
+  background: #BC252A;
+  color: #FFFFFF;
+	font-weight: bold;
+}
+
+#main-menu > ul.menu li:hover > a,
+#main-menu > ul.menu a:focus{
+  background: #BC252A;
+  color: #FFFFFF;
+}
+
+#footer-area > ul {
+	margin: 0;
+}
+
+#footer-area > ul.menu li {
+	border-right: 1px solid #BC252A;
+}
+
+#footer-area > ul.menu li  a{
+	color: #FFFFFF;
+}
+
+#footer-area ul li.leaf, #footer-area ul li.expanded {
+  list-style: none outside none;
+}
+
+.maintenance-page  {
+	text-align: center;
+}
+
+.links li a, .links li a:hover, a{
+	color: #BC252A;
+	text-shadow: none;
+}
+
+.titre{
+	background: url("/sites/all/themes/bistro32/images/block_title_h1.png") repeat-x scroll 0 0 transparent;
+}
+
+h1, h1.page-title{
+	text-transform: uppercase;
+	color: #726F6F;
+	display: inline-block;
+	background: url("/sites/all/themes/bistro32/images/background_texture.png") repeat scroll 0 0 transparent;
+}
+
+.paragraphes{
+	margin-top: 1em;
+}
+
+.titre-paragraphe{
+	background: url("/sites/all/themes/bistro32/images/block_title_h2.png") repeat-x scroll 0 0 transparent;
+}
+
+h2, .node h2.title{
+	display: inline-block;
+	background: url("/sites/all/themes/bistro32/images/background_texture.png") repeat scroll 0 0 transparent;
+	font-size: 1.3em;
+	font-weight: bold;
+	padding: 0.1em 0.3em;
+}
+
+#sidebar .block > h2{
+	background: #AAAAAA;
+	width: 100%;
+	padding: 8px;
+}
+
+.form-item label{
+	display: block;
+	width: 25%;
+}
+
+form input.form-text{
+	width: 75%;
+}
+
+.slideshow{
+	background: #eeeeee;
+}
+
+.page-node #content-wrap .slideshow img {
+	margin: 0.5em;
+}
+
+.left{
+	float: left;
+}
+
+.right{
+	float: right;
+}
+
+.separateur{
+	border-top: 1px dotted #AAAAAA;
+}
+
+.clear{
+	clear: both;
+	float: none;
+}
