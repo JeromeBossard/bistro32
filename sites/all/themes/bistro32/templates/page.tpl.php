@@ -98,32 +98,51 @@
         $facebook_url = check_plain(theme_get_setting('facebook_url', 'impact_theme')); 
         $google_plus_url = check_plain(theme_get_setting('google_plus_url', 'impact_theme'));
         ?>
-      <div class="social-profile">
-        <ul>
-          <?php if ($facebook_url): ?><li class="facebook">
-            <a target="_blank" title="<?php print $site_name; ?> in Facebook" href="<?php print $facebook_url; ?>"><?php print $site_name; ?> Facebook </a>
-          </li><?php endif; ?>
-          <?php if ($twitter_url): ?><li class="twitter">
-            <a target="_blank" title="<?php print $site_name; ?> in Twitter" href="<?php print $twitter_url; ?>"><?php print $site_name; ?> Twitter </a>
-          </li><?php endif; ?>
-          <?php if ($google_plus_url): ?><li class="google-plus">
-            <a target="_blank" title="<?php print $site_name; ?> in Google+" href="<?php print $google_plus_url; ?>"><?php print $site_name; ?> Google+ </a>
-          </li><?php endif; ?>
-          <li class="rss">
-            <a target="_blank" title="<?php print $site_name; ?> in RSS" href="<?php print $front_page; ?>rss.xml"><?php print $site_name; ?> RSS </a>
-          </li>
-        </ul>
-      </div>
+			<div class="header-right">
+				<div class="social-profile">
+					<ul>
+						<?php if ($facebook_url): ?><li class="facebook">
+							<a target="_blank" title="<?php print $site_name; ?> in Facebook" href="<?php print $facebook_url; ?>"><?php print $site_name; ?> Facebook </a>
+						</li><?php endif; ?>
+						<?php if ($twitter_url): ?><li class="twitter">
+							<a target="_blank" title="<?php print $site_name; ?> in Twitter" href="<?php print $twitter_url; ?>"><?php print $site_name; ?> Twitter </a>
+						</li><?php endif; ?>
+						<?php if ($google_plus_url): ?><li class="google-plus">
+							<a target="_blank" title="<?php print $site_name; ?> in Google+" href="<?php print $google_plus_url; ?>"><?php print $site_name; ?> Google+ </a>
+						</li><?php endif; ?>
+						<li class="rss">
+							<a target="_blank" title="<?php print $site_name; ?> in RSS" href="<?php print $front_page; ?>rss.xml"><?php print $site_name; ?> RSS </a>
+						</li>
+					</ul>
+				</div>
+				<div class="language">
+					<ul>
+						<?php 
+							if($language->language == '' || $language->language == 'fr'){ ?>
+								<li class="francais_on">&nbsp;</li>
+								<li class="anglais_off">
+									<a title="Bistro32 in English" href="/en">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+								</li>
+						<?php }else{ ?>
+								<li class="francais_off">
+									<a title="Bistro32 en français" href="/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+								</li>
+								<li class="anglais_on">&nbsp;</li>
+						<?php } ?>
+					</ul>
+				</div>
+			</div>
     <?php endif; ?>
     <nav id="navigation" role="navigation">			
       <div id="main-menu">
 				<div class="home"><a href="/"></a></div>
         <?php 
-          if (module_exists('i18n_menu')) {
-            $main_menu_tree = i18n_menu_translated_tree(variable_get('menu_main_links_source', 'main-menu'));
-          } else {
-            $main_menu_tree = menu_tree(variable_get('menu_main_links_source', 'main-menu'));
-          }
+					$main_menu_tree = array();
+					if($language->language == '' || $language->language == 'fr'){
+						$main_menu_tree = menu_tree(variable_get('menu_main_links_source', 'main-menu'));
+					}else{
+						$main_menu_tree = menu_tree('menu-menu-principal-anglais');
+					}
           print drupal_render($main_menu_tree);
         ?>
       </div>

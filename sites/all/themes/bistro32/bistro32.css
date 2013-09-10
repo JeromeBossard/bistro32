@@ -66,6 +66,38 @@ body{
 	font-size: 2em;
 }
 
+#header .language{
+	position: absolute;
+	right: 1em;
+	top: 6em;
+}
+
+#header  .francais_on, #header  .francais_off, #header  .anglais_on, #header  .anglais_off{
+	float: left;
+	width: 21px;
+	margin-right: 11px;
+	height: 13px;
+	list-style-type: none;
+}
+
+#header  .francais_on{
+	margin-right: 17px;
+	background: url("/sites/all/themes/bistro32/images/btlang_fr.gif") scroll 0 13px transparent;
+}
+
+#header  .francais_off{
+	margin-right: 17px;
+	background: url("/sites/all/themes/bistro32/images/btlang_fr.gif") scroll 0 0 transparent;
+}
+
+#header  .anglais_on{
+	background: url("/sites/all/themes/bistro32/images/btlang_en.gif") scroll 0 13px transparent;
+}
+
+#header  .anglais_off{
+	background: url("/sites/all/themes/bistro32/images/btlang_en.gif") scroll 0 0 transparent;
+}
+
 #header img{
 	border-radius: 3px;
 }
@@ -129,6 +161,32 @@ h1, h1.page-title{
 
 .paragraphes{
 	margin-top: 1em;
+}
+
+.paragraphe{
+	padding: 10px;
+	margin-bottom: 15px;
+	border-radius: 5px;
+}
+
+.paragraphe.Rouge, .paragraphe.Rouge h2, .node .paragraphe.Rouge h2.title{
+	background: #BC252A;
+}
+
+.paragraphe.Gris, .paragraphe.Gris h2, .node .paragraphe.Gris h2.title{
+	background: #AAAAAA;
+}
+
+.paragraphe.Rouge h2, .node .paragraphe.Rouge h2.title, .paragraphe.Gris h2, .node .paragraphe.Gris h2.title{
+	color: #ffffff;
+}
+
+.paragraphe.Rouge p, .paragraphe.Gris p{
+	color: #ffffff;
+}
+
+.paragraphe.Rouge .titre-paragraphe, .paragraphe.Gris .titre-paragraphe{
+	background: url("/sites/all/themes/bistro32/images/block_title_h2_spe.png") repeat-x scroll 0 0 transparent;
 }
 
 .titre-paragraphe{

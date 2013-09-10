@@ -112,12 +112,14 @@
 		
 		<?php if($node->field_paragraphe && $node->field_paragraphe['und'] && $node->field_paragraphe['und'][0]){ ?>
 		<div class="paragraphes">
-			<?php foreach($node->field_paragraphe['und'] as $content_block){ 
+			<?php // FieldCollection du paragraphe
+			foreach($node->field_paragraphe['und'] as $content_block){
 				$theContentBlock = entity_load('field_collection_item', array($content_block['value']));
 				$the_content_block_image = '';
 				$the_content_block_image_title = '';
 				$the_content_block_image_alt = '';
 				
+				// Champ image
 				$image = false;
 				if($theContentBlock[$content_block['value']]->field_image_paragraphe && $theContentBlock[$content_block['value']]->field_image_paragraphe['und'][0]){
 					$the_content_block_image = $theContentBlock[$content_block['value']]->field_image_paragraphe['und'][0]['uri'];
@@ -125,9 +127,20 @@
 					$the_content_block_image_alt = $theContentBlock[$content_block['value']]->field_image_paragraphe['und'][0]['alt'];
 					$image = true;
 				}
+				
+				// Couleur de fond du paragraphe
+				$couleur = 'Transparent';
+				if($theContentBlock[$content_block['value']]->field_couleur_de_fond && $theContentBlock[$content_block['value']]->field_couleur_de_fond['und'][0]){
+					$couleur = $theContentBlock[$content_block['value']]->field_couleur_de_fond['und'][0]['value'];
+				} ?>
+				
+				<div class="paragraphe <?php print $couleur ?>">
+				<?php // Titre paragraphe
 				if($theContentBlock[$content_block['value']]->field_titre_paragraphe && $theContentBlock[$content_block['value']]->field_titre_paragraphe['und'][0]){ ?>
-					<div class="titre-paragraphe"><h2><?php print $theContentBlock[$content_block['value']]->field_titre_paragraphe['und'][0]['value'] ?></h2></div>
-				<?php } ?>
+					<div class="titre-paragraphe">
+						<h2><?php print $theContentBlock[$content_block['value']]->field_titre_paragraphe['und'][0]['value'] ?></h2>
+					</div>
+					<?php } ?>
 					<div class="contenu-paragraphe">
 						<?php if($image){ ?>
 						<div class="image-paragraphe <?php print $theContentBlock[$content_block['value']]->field_placement_image['und'][0]['value'] ?>">
@@ -141,8 +154,9 @@
 						<?php } ?>
 						<div class="clear"></div>
 					</div>
+				</div>
 			<?php } ?>
-			</div>
+		</div>
 		<?php } ?>
   </div>
 		
