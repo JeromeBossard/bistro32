@@ -2,6 +2,10 @@
 	font-size: 12px;
 }
 
+p{
+	margin-bottom: 1em;
+}
+
 body{
 	background: #CCCCCC;
 	/*background: url("/sites/all/themes/bistro32/images/background_texture.png") repeat scroll 0 0 transparent;*/
@@ -191,6 +195,10 @@ h1, h1.page-title{
 
 .titre-paragraphe{
 	background: url("/sites/all/themes/bistro32/images/block_title_h2.png") repeat-x scroll 0 0 transparent;
+}
+
+.image-paragraphe{
+	margin-right: 15px;
 }
 
 h2, .node h2.title{

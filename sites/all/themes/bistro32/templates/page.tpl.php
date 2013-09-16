@@ -63,6 +63,23 @@
  * @see template_preprocess_page()
  * @see template_process()
  */
+$description = 'Dans un ancien bistrot de quartier entièrement repensé par Walid à ce lieu a ouvert début 2012, le 32, un lieu où déguster les vins de sa cave prolifique et manger généreusement, façon tapas ou à table.';
+if($is_front){
+	drupal_add_html_head(array(
+		'#tag' => 'meta',
+		'#attributes' => array(
+			'property' => 'og:description',
+			'content' => $description,
+		),
+	), $title . '_og_description');
+	drupal_add_html_head(array(
+		'#tag' => 'meta',
+		'#attributes' => array(
+			'property' => 'description',
+			'content' => $description,
+		),
+	), $title . '_description');
+}
 ?>
 <div id="wrapper">
   <header id="header" class="clearfix">
@@ -125,7 +142,7 @@
 								</li>
 						<?php }else{ ?>
 								<li class="francais_off">
-									<a title="Bistro32 en fran�ais" href="/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+									<a title="Bistro32 en français" href="/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
 								</li>
 								<li class="anglais_on">&nbsp;</li>
 						<?php } ?>

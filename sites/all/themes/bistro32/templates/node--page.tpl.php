@@ -73,8 +73,27 @@
  * @see template_preprocess_node()
  * @see template_process()
  */
- /*print_r($node);
- die();*/
+if($node->body['und'][0]['safe_summary']){
+	$description = $node->body['und'][0]['safe_summary'];
+}else{
+	$description = 'Dans un ancien bistrot de quartier entièrement repensé par Walid à ce lieu a ouvert début 2012, le 32, un lieu où déguster les vins de sa cave prolifique et manger généreusement, façon tapas ou à table.';
+}
+if(!$is_front){
+	drupal_add_html_head(array(
+		'#tag' => 'meta',
+		'#attributes' => array(
+			'property' => 'og:description',
+			'content' => $description,
+		),
+	), $title . '_og_description');
+	drupal_add_html_head(array(
+		'#tag' => 'meta',
+		'#attributes' => array(
+			'property' => 'description',
+			'content' => $description,
+		),
+	), $title . '_description');
+}
 ?>
 <?php if (!$page): ?>
   <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
