@@ -73,27 +73,19 @@
  * @see template_preprocess_node()
  * @see template_process()
  */
-if($node->body['und'][0]['safe_summary']){
+
+global $base_url;
+// Debut init des metas...
+$description = '';
+if($node->body && $node->body['und'] && $node->body['und'][0] && $node->body['und'][0]['safe_summary']){
 	$description = $node->body['und'][0]['safe_summary'];
 }else{
 	$description = 'Dans un ancien bistrot de quartier entièrement repensé par Walid à ce lieu a ouvert début 2012, le 32, un lieu où déguster les vins de sa cave prolifique et manger généreusement, façon tapas ou à table.';
 }
-if(!$is_front){
-	drupal_add_html_head(array(
-		'#tag' => 'meta',
-		'#attributes' => array(
-			'property' => 'og:description',
-			'content' => $description,
-		),
-	), $title . '_og_description');
-	drupal_add_html_head(array(
-		'#tag' => 'meta',
-		'#attributes' => array(
-			'property' => 'description',
-			'content' => $description,
-		),
-	), $title . '_description');
-}
+
+$og_image = '/sites/default/files/logo-150x150_0.jpg';
+// Fin init des metas
+
 ?>
 <?php if (!$page): ?>
   <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
@@ -146,6 +138,7 @@ if(!$is_front){
 					$the_content_block_image_alt = $theContentBlock[$content_block['value']]->field_image_paragraphe['und'][0]['alt'];
 					$image = true;
 				}
+				$og_image = image_style_url('paragraphe', $the_content_block_image);
 				
 				// Couleur de fond du paragraphe
 				$couleur = 'Transparent';
@@ -177,17 +170,27 @@ if(!$is_front){
 			<?php } ?>
 		</div>
 		<?php } ?>
-  </div>
 		
-	<?php if($node->field_images && $node->field_images['und']){ ?>
+	<?php if($node->field_images && $node->field_images['und']){
+		drupal_add_css('sites/all/themes/bistro32/js/jCarousel/skins/tango/skin.css');
+		drupal_add_js('sites/all/themes/bistro32/js/jCarousel/lib/jquery.jcarousel.min.js'); ?>
 		<div class="slideshow">
-		<?php foreach($node->field_images['und'] as $image){ ?>
-				<a href="<?php print image_style_url('fancybox-desktop', $image['uri']) ?>" class="fancybox" data-fancybox-group="gallery" title="<?php print $image['title'] ?>">						
-					<img src="<?php print image_style_url('miniature', $image['uri']) ?>" alt="<?php print $image['alt'] ?>" title="<?php print $image['title'] ?>"/>
-				</a>
-		<?php } ?>
+			<ul id="mycarousel" class="jcarousel-skin-tango">
+			<?php foreach($node->field_images['und'] as $image){
+				$orientation = 'portrait';
+				if($image['width'] > $image['height']){
+					$orientation = 'paysage';
+				} ?>
+				<li class="<?php print $orientation ?>">
+					<a href="<?php print image_style_url('fancybox-desktop', $image['uri']) ?>" class="fancybox" data-fancybox-group="gallery" title="<?php print $image['title'] ?>">						
+						<img src="<?php print image_style_url('miniature', $image['uri']) ?>" alt="<?php print $image['alt'] ?>" title="<?php print $image['title'] ?>"/>
+					</a>
+				</li>
+			<?php } ?>		
+			</ul>
 		</div>
 	<?php } ?>
+  </div>
 
   <?php if (!empty($content['links'])): ?>
     <footer>
@@ -198,4 +201,50 @@ if(!$is_front){
   <?php print render($content['comments']); ?>
 <?php if (!$page): ?>
   </article> <!-- /.node -->
-<?php endif; ?>
+<?php endif; 
+
+// Chargement des metas generees
+if(!$is_front){
+	drupal_add_html_head(array(
+		'#tag' => 'meta',
+		'#attributes' => array(
+			'property' => 'og:description',
+			'content' => $description,
+		),
+	), $title . '_og_description');
+	drupal_add_html_head(array(
+		'#tag' => 'meta',
+		'#attributes' => array(
+			'property' => 'description',
+			'content' => $description,
+		),
+	), $title . '_description');
+	drupal_add_html_head(array(
+		'#tag' => 'meta',
+		'#attributes' => array(
+			'property' => 'og:title',
+			'content' => $node->title,
+		),
+	), $title . '_og_title');
+	drupal_add_html_head(array(
+		'#tag' => 'meta',
+		'#attributes' => array(
+			'property' => 'og:type',
+			'content' => 'website',
+		),
+	), $title . '_og_type');
+	drupal_add_html_head(array(
+		'#tag' => 'meta',
+		'#attributes' => array(
+			'property' => 'og:image',
+			'content' => $og_image,
+			),
+	), $title . '_og_image');
+	drupal_add_html_head(array(
+		'#tag' => 'meta',
+		'#attributes' => array(
+			'property' => 'og:url',
+			'content' => $base_url . $node_url,
+			),
+	), $title . '_og_url');
+} ?>

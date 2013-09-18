@@ -36,7 +36,7 @@ body{
 
 #header .sitename{
 	margin: 0.5em;
-	width: 50%;
+	width: 55%;
 }
 
 #header .site-name{
@@ -49,12 +49,7 @@ body{
 
 #header .logo{
 	margin: 0.5em;
-	width: 20%;
-}
-
-#header .devise{
-	margin: 0.5em;
-	width: 20%;
+	width: 23%;
 }
 
 #header .site-devise{
@@ -70,36 +65,42 @@ body{
 	font-size: 2em;
 }
 
-#header .language{
-	position: absolute;
-	right: 1em;
-	top: 6em;
+.social{
+	height: 130px;
 }
 
-#header  .francais_on, #header  .francais_off, #header  .anglais_on, #header  .anglais_off{
-	float: left;
+.social-profile{
+	position: relative;
+	right: 0;
+	width: 100%;
+}
+
+.language{
+	position: relative;
+	top: 40px;
+}
+
+#header  .francais_off, #header  .anglais_off{
+	float: right;
 	width: 21px;
 	margin-right: 11px;
 	height: 13px;
 	list-style-type: none;
 }
 
-#header  .francais_on{
-	margin-right: 17px;
-	background: url("/sites/all/themes/bistro32/images/btlang_fr.gif") scroll 0 13px transparent;
+.language ul li a,
+.language ul li span{
+	display: block;
+	width: 40px;
+	height: 40px;
 }
 
-#header  .francais_off{
-	margin-right: 17px;
-	background: url("/sites/all/themes/bistro32/images/btlang_fr.gif") scroll 0 0 transparent;
+.language ul li.francais_off{
+	background: url("/sites/all/themes/bistro32/images/btlang_fr.gif") no-repeat 0 0 transparent;
 }
 
-#header  .anglais_on{
-	background: url("/sites/all/themes/bistro32/images/btlang_en.gif") scroll 0 13px transparent;
-}
-
-#header  .anglais_off{
-	background: url("/sites/all/themes/bistro32/images/btlang_en.gif") scroll 0 0 transparent;
+.language ul li.anglais_off{
+	background: url("/sites/all/themes/bistro32/images/btlang_en.gif") no-repeat 0 0 transparent;
 }
 
 #header img{
@@ -224,12 +225,12 @@ form input.form-text{
 	width: 75%;
 }
 
-.slideshow{
-	background: #eeeeee;
+.page-node #content-wrap .slideshow img {
+	border: none;
 }
 
-.page-node #content-wrap .slideshow img {
-	margin: 0.5em;
+.slideshow ul li {
+	width: 0 auto;
 }
 
 .left{

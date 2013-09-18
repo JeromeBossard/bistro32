@@ -63,6 +63,8 @@
  * @see template_preprocess_page()
  * @see template_process()
  */
+global $base_url;
+
 $description = 'Dans un ancien bistrot de quartier entièrement repensé par Walid à ce lieu a ouvert début 2012, le 32, un lieu où déguster les vins de sa cave prolifique et manger généreusement, façon tapas ou à table.';
 if($is_front){
 	drupal_add_html_head(array(
@@ -79,77 +81,88 @@ if($is_front){
 			'content' => $description,
 		),
 	), $title . '_description');
+	drupal_add_html_head(array(
+		'#tag' => 'meta',
+		'#attributes' => array(
+			'property' => 'og:title',
+			'content' => $site_name,
+		),
+	), $title . '_og_title');
+	drupal_add_html_head(array(
+		'#tag' => 'meta',
+		'#attributes' => array(
+			'property' => 'og:type',
+			'content' => 'website',
+		),
+	), $title . '_og_type');
+	drupal_add_html_head(array(
+		'#tag' => 'meta',
+		'#attributes' => array(
+			'property' => 'og:image',
+			'content' => $base_url . '/sites/all/themes/bistro32/images/logo-150x150.png',
+			),
+	), $title . '_og_image');
+	drupal_add_html_head(array(
+		'#tag' => 'meta',
+		'#attributes' => array(
+			'property' => 'og:url',
+			'content' => $base_url,
+			),
+	), $title . '_og_url');
 }
 ?>
 <div id="wrapper">
   <header id="header" class="clearfix">
-    <?php if (theme_get_setting('image_logo','impact_theme')): ?>
-      <?php if ($logo): ?><div id="site-logo">
-				<div class="left sitename">
-					<div class="site-name"><?php print $site_name ?></div>
-					<div class="site-slogan"><?php print $site_slogan ?></div>
-				</div>	
+			<div id="site-logo">
 				<div class="left logo">
 					<a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
 						<img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
 					</a>
 				</div>
-				<div class="left devise">
-					<div class="site-devise">RESTO CAVE EXPO</div>
-				</div>			
-				<div class="clear"></div>
-			</div><?php endif; ?>
-    <?php else: ?>
-      <hgroup id="site-name-wrap">
-        <h1 id="site-name">
-          <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
-            <span><?php print $site_name; ?></span>
-          </a>
-        </h1>
-        <?php if ($site_slogan): ?><h2 id="site-slogan"><?php print $site_slogan; ?></h2><?php endif; ?>
-      </hgroup>
-    <?php endif; ?>
-    <?php if (theme_get_setting('socialicon_display', 'impact_theme')): ?>
+				<div class="left sitename">
+					<img src="<?php print $base_url . '/sites/all/themes/bistro32/images/bistro32.png'?>" alt="<?php print t('Home'); ?>" />
+				</div>
+				<?php if (theme_get_setting('socialicon_display', 'impact_theme')): ?>
         <?php 
-        $twitter_url = check_plain(theme_get_setting('twitter_url', 'impact_theme')); 
-        $facebook_url = check_plain(theme_get_setting('facebook_url', 'impact_theme')); 
+        $twitter_url = check_plain(theme_get_setting('twitter_url', 'impact_theme'));
+        $facebook_url = check_plain(theme_get_setting('facebook_url', 'impact_theme'));
         $google_plus_url = check_plain(theme_get_setting('google_plus_url', 'impact_theme'));
         ?>
-			<div class="header-right">
-				<div class="social-profile">
-					<ul>
-						<?php if ($facebook_url): ?><li class="facebook">
-							<a target="_blank" title="<?php print $site_name; ?> in Facebook" href="<?php print $facebook_url; ?>"><?php print $site_name; ?> Facebook </a>
-						</li><?php endif; ?>
-						<?php if ($twitter_url): ?><li class="twitter">
-							<a target="_blank" title="<?php print $site_name; ?> in Twitter" href="<?php print $twitter_url; ?>"><?php print $site_name; ?> Twitter </a>
-						</li><?php endif; ?>
-						<?php if ($google_plus_url): ?><li class="google-plus">
-							<a target="_blank" title="<?php print $site_name; ?> in Google+" href="<?php print $google_plus_url; ?>"><?php print $site_name; ?> Google+ </a>
-						</li><?php endif; ?>
-						<li class="rss">
-							<a target="_blank" title="<?php print $site_name; ?> in RSS" href="<?php print $front_page; ?>rss.xml"><?php print $site_name; ?> RSS </a>
-						</li>
-					</ul>
+				<div class="right social">
+					<div class="social-profile">
+						<ul>
+							<?php if ($facebook_url): ?><li class="facebook">
+								<a target="_blank" title="<?php print $site_name; ?> in Facebook" href="<?php print $facebook_url; ?>"><?php print $site_name; ?> Facebook </a>
+							</li><?php endif; ?>
+							<?php if ($twitter_url): ?><li class="twitter">
+								<a target="_blank" title="<?php print $site_name; ?> in Twitter" href="<?php print $twitter_url; ?>"><?php print $site_name; ?> Twitter </a>
+							</li><?php endif; ?>
+							<?php if ($google_plus_url): ?><li class="google-plus">
+								<a target="_blank" title="<?php print $site_name; ?> in Google+" href="<?php print $google_plus_url; ?>"><?php print $site_name; ?> Google+ </a>
+							</li><?php endif; ?>
+							<li class="rss">
+								<a target="_blank" title="<?php print $site_name; ?> in RSS" href="<?php print $front_page; ?>rss.xml"><?php print $site_name; ?> RSS </a>
+							</li>
+						</ul>
+					</div>
+					<div class="language">
+						<ul>
+							<?php 
+								if($language->language == '' || $language->language == 'fr'){ ?>
+									<li class="anglais_off">
+										<a title="Bistro32 in English" href="/en">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+									</li>
+							<?php }else{ ?>
+									<li class="francais_off">
+										<a title="Bistro32 en français" href="/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+									</li>
+							<?php } ?>
+						</ul>
+					</div>
 				</div>
-				<div class="language">
-					<ul>
-						<?php 
-							if($language->language == '' || $language->language == 'fr'){ ?>
-								<li class="francais_on">&nbsp;</li>
-								<li class="anglais_off">
-									<a title="Bistro32 in English" href="/en">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-								</li>
-						<?php }else{ ?>
-								<li class="francais_off">
-									<a title="Bistro32 en français" href="/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-								</li>
-								<li class="anglais_on">&nbsp;</li>
-						<?php } ?>
-					</ul>
-				</div>
-			</div>
-    <?php endif; ?>
+			<?php endif; ?>
+				<div class="clear"></div>
+			</div>    
     <nav id="navigation" role="navigation">			
       <div id="main-menu">
 				<div class="home"><a href="/"></a></div>
@@ -187,6 +200,16 @@ if($is_front){
   <?php endif; ?>
 
   <div id="main" class="clearfix">
+		<!-- AddThis Button BEGIN -->
+		<div class="addthis_toolbox addthis_floating_style addthis_32x32_style" style="left:50px;top:50px;">
+		<a class="addthis_button_preferred_1"></a>
+		<a class="addthis_button_preferred_2"></a>
+		<a class="addthis_button_preferred_3"></a>
+		<a class="addthis_button_preferred_4"></a>
+		<a class="addthis_button_compact"></a>
+		</div>
+		<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-52380f332ae74d53"></script>
+		<!-- AddThis Button END -->
     <div id="primary">
       <section id="content" role="main">
         <?php if ($is_front): ?>
@@ -260,9 +283,3 @@ if($is_front){
   </footer>
 
 </div>
-
-
-
-
-
-
