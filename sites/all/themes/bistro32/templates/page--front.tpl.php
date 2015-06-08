@@ -94,6 +94,7 @@ drupal_add_html_head(array(
           <a id="main-content"></a>
           <h1 class="title" id="page-title"><?php print t('Bienvenue sur le site du Bistro32') ?></h1>
 					<p>Le site ouvrira bientôt ses portes, mais vous pouvez nous contacter par téléphone au <strong>09 53 11 85 75</strong></p>
+					<p>Vous pouvez également nous retrouver sur la <a href="https://fr-fr.facebook.com/bistro32lagarenne" target="_blank">page Facebook</a>.</p>
           <?php //print $content; ?><br/><br/>
         </div>
       </section> <!-- /#main -->
